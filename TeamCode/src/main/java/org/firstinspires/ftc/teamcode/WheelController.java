@@ -14,10 +14,6 @@ public class WheelController {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
-    public TickRatio frontRightTick;
-    public TickRatio frontLeftTick;
-    public TickRatio backLeftTick;
-    public TickRatio backRightTick;
 
     public final boolean hasStrafe = true;
     public final boolean mecanum = true;
@@ -86,8 +82,5 @@ public class WheelController {
 
         frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        frontLeftTick = new TickRatio(frontLeft);
-
     }
 }
