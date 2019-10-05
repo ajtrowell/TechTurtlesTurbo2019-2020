@@ -1,0 +1,72 @@
+package org.firstinspires.ftc.teamcode;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+public class PreInitGUI {
+    String[] varNames;
+    double[] setValues;
+    DoubleCommand[] dataDisplay;
+    Telemetry telemetry;
+    Gamepad gamepad;
+    int cursorPos;
+    boolean prevUp = false;
+    boolean prevDown = false;
+    boolean prevInc = false;
+    boolean prevDec = false;
+
+    PreInitGUI(String[] varNames, DoubleCommand[] dataDisplay, Telemetry telemetry, Gamepad gamepad) {
+        this.varNames = varNames;
+        this.dataDisplay = dataDisplay;
+        setValues = new double[varNames.length];
+        this.telemetry = telemetry;
+        this.gamepad = gamepad;
+    }
+
+    void update() {
+        telemetry.clearAll();
+
+        telemetry.addLine("=== Telemetry Value ===");
+        for (int i = 0; i < dataDisplay.length; i++) {
+            telemetry.addData("   telemetry" + i, dataDisplay[i].execute());
+        }
+
+        telemetry.addLine("===   Change Data   ===");
+        if (gamepad.left_stick_y < -0.5 && !prevUp && cursorPos < varNames.length-1) cursorPos++;
+        if (gamepad.left_stick_y > 0.5 && !prevDown && cursorPos > 0) cursorPos--;
+
+        for (int i = varNames.length-1; i >= 0; i--) {
+            if (i == cursorPos) {
+                telemetry.addData("> " + varNames[i], setValues[i]);
+                if (gamepad.a && !prevInc) setValues[i]++;
+                if (gamepad.b && !prevDec) setValues[i]--;
+                if (gamepad.left_stick_x > 0.5) setValues[i] += 5;
+                if (gamepad.left_stick_x < -0.5) setValues[i] -= 5;
+                if (gamepad.x) setValues[i] = 0;
+            } else {
+                telemetry.addData("   " + varNames[i], setValues[i]);
+            }
+        }
+
+        prevInc = gamepad.a;
+        prevDec = gamepad.b;
+        prevUp = (gamepad.left_stick_y > 0.5);
+        prevDown = (gamepad.left_stick_y < -0.5);
+
+        telemetry.update();
+    }
+
+    double get(String name) {
+        double value = 0;
+
+        for (int i = 0; i < varNames.length; i++) {
+            if (varNames[i] == name) {
+                value = setValues[i];
+            }
+        }
+
+        return value;
+    }
+}
