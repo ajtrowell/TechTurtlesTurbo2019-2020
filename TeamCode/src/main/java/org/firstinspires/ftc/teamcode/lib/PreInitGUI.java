@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.lib;
 
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.lib.util.DoubleCommand;
 
 public class PreInitGUI {
     String[] varNames;
@@ -17,7 +17,7 @@ public class PreInitGUI {
     boolean prevInc = false;
     boolean prevDec = false;
 
-    PreInitGUI(String[] varNames, DoubleCommand[] dataDisplay, Telemetry telemetry, Gamepad gamepad) {
+    public PreInitGUI(String[] varNames, DoubleCommand[] dataDisplay, Telemetry telemetry, Gamepad gamepad) {
         this.varNames = varNames;
         this.dataDisplay = dataDisplay;
         setValues = new double[varNames.length];
@@ -25,7 +25,7 @@ public class PreInitGUI {
         this.gamepad = gamepad;
     }
 
-    void update() {
+    public void update() {
         telemetry.clearAll();
 
         telemetry.addLine("=== Telemetry Value ===");
@@ -58,7 +58,7 @@ public class PreInitGUI {
         telemetry.update();
     }
 
-    double get(String name) {
+    public double get(String name) {
         double value = 0;
 
         for (int i = 0; i < varNames.length; i++) {
