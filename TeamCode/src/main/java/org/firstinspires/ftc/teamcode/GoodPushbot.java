@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
 @TeleOp(name="Pushbot", group="default")
@@ -12,6 +14,9 @@ public class GoodPushbot extends OpMode {
     DcMotor right;
     DcMotor arm;
 
+    Servo lclaw;
+    Servo rclaw;
+
     PreInitGUI gui;
 
     @Override
@@ -19,6 +24,13 @@ public class GoodPushbot extends OpMode {
         left = hardwareMap.dcMotor.get("left");
         right = hardwareMap.dcMotor.get("right");
         arm = hardwareMap.dcMotor.get("arm");
+        lclaw = hardwareMap.servo.get("lclaw");
+        rclaw = hardwareMap.servo.get("rclaw");
+
+        left.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        right.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        left.setDirection(DcMotor.Direction.REVERSE);
 
         gui = new PreInitGUI(new String[]{"armMin", "armMax"}, new DoubleCommand[]{() -> {return arm.getCurrentPosition();}}, telemetry, gamepad1);
     }
@@ -31,6 +43,7 @@ public class GoodPushbot extends OpMode {
     @Override
     public void start() {
         telemetry.clearAll();
+        telemetry.update();
     }
 
     @Override
@@ -43,12 +56,22 @@ public class GoodPushbot extends OpMode {
         left.setPower(leftPower);
         right.setPower(rightPower);
 
+
         if (arm.getCurrentPosition() < gui.get("armMin")) {
-            arm.setPower(1);
+            arm.setPower(0.1);
         } else if (arm.getCurrentPosition() > gui.get("armMax")) {
-            arm.setPower(-1);
+            arm.setPower(-0.1);
         } else {
             arm.setPower(gamepad1.right_stick_y);
+        }
+
+        if (gamepad1.a) {
+            lclaw.setPosition(0);
+            rclaw.setPosition(1);
+        }
+        if (gamepad1.b) {
+            lclaw.setPosition(1);
+            rclaw.setPosition(0);
         }
     }
 }
