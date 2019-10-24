@@ -5,10 +5,14 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.lib.Configurator;
+
 @Autonomous(name="Autonomous")
 public class TimedAutoFull extends LinearOpMode {
+    Configurator config;
+
     public void runOpMode(){
-    WheelController wheelController = new WheelController(hardwareMap);
+    WheelController wheelController = new WheelController(config);
     Servo arm;
     arm = hardwareMap.servo.get("arm");
 
