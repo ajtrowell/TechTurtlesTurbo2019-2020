@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.teamcode.lib.util.DoubleCommand;
 import org.firstinspires.ftc.teamcode.lib.PreInitGUI;
 
-@TeleOp(name="Pushbot", group="default")
+//@TeleOp(name="Pushbot", group="default")
 
 public class GoodPushbot extends OpMode {
     DcMotor left;
