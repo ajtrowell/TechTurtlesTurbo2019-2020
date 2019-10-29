@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.lib;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
@@ -99,7 +99,7 @@ public class WheelController {
         moveXY(0,0);
     }
 
-    WheelController(Configurator config) {
+    public WheelController(Configurator config) {
         // When the wheel controller is instantiated, it gets the motors and sets them up
         frontLeft = config.getDcMotor("frontLeft");
         frontRight = config.getDcMotor("frontRight");
