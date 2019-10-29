@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.lib.Configurator;
+import org.firstinspires.ftc.teamcode.lib.WheelController;
 
 @TeleOp(name="TeleOp", group="default")
 
@@ -18,6 +19,7 @@ public class TurtlesTeleOp extends OpMode {
 
     @Override
     public void init() {
+        config = new Configurator(this);
         wheelController = new WheelController(config);
         armMotor = config.getDcMotor("armMotor");
         claw = config.getServo("claw");

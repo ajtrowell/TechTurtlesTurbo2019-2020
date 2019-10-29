@@ -2,21 +2,23 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.lib.Configurator;
+import org.firstinspires.ftc.teamcode.lib.WheelController;
 
 @Autonomous(name="Autonomous")
 public class TimedAutoFull extends LinearOpMode {
     Configurator config;
+    WheelController wheelController;
 
     public void runOpMode(){
-    WheelController wheelController = new WheelController(config);
-    Servo arm;
-    arm = hardwareMap.servo.get("arm");
+        config = new Configurator(this);
+        wheelController = new WheelController(config);
+        Servo arm;
+        arm = hardwareMap.servo.get("arm");
 
-    //moves forward to foundation
+        //moves forward to foundation
         wheelController.moveXY(0,1);
         sleep(4000);
         wheelController.stopWheels();

@@ -1,16 +1,30 @@
 package org.firstinspires.ftc.teamcode.lib;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.HardwareDevice;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class Configurator extends OpMode {
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+
+@Disabled
+public class Configurator {
+    Telemetry telemetry;
+    HardwareMap hardwareMap;
+
+    public Configurator(OpMode opMode) {
+        hardwareMap = opMode.hardwareMap;
+        telemetry = opMode.telemetry;
+    }
 
     public DcMotor getDcMotor(String name) {
         try {
             return hardwareMap.dcMotor.get(name);
         } catch (Exception e) {
-            return null;
+            telemetry.log().add("WARNING : Could not find motor " + name + ", please add to config.");
+            return hardwareMap.getAll(DcMotor.class).get(0);
         }
     }
 
@@ -18,13 +32,8 @@ public class Configurator extends OpMode {
         try {
             return hardwareMap.servo.get(name);
         } catch (Exception e) {
-            return null;
+            telemetry.log().add("WARNING : Could not find servo " + name + ", please add to config.");
+            return hardwareMap.getAll(Servo.class).get(0);
         }
     }
-
-    //These functions are just to prevent Java from blocking compile
-    @Override
-    public void init() {}
-    @Override
-    public void loop() {}
 }

@@ -106,7 +106,7 @@ public class WheelController {
         backLeft = config.getDcMotor("backLeft");
         backRight = config.getDcMotor("backRight");
 
+        frontRight.setDirection(DcMotorSimple.Direction.REVERSE);
         backRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 }
