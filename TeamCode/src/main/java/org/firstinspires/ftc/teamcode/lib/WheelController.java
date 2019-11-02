@@ -20,6 +20,10 @@ public class WheelController {
     public final boolean hasStrafe = true;
     public final boolean mecanum = true;
 
+    public int avgEncoder() {
+        return (frontLeft.getCurrentPosition() + frontRight.getCurrentPosition())/2;
+    }
+
     public int leftEncoder() {
         return frontLeft.getCurrentPosition();
     }
