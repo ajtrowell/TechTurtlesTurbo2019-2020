@@ -21,7 +21,10 @@ public class TimedAutoFull extends LinearOpMode {
 
         //moves forward to foundation
         wheelController.moveXY(0,-0.25);
-        sleep(2000);
+        sleep(5000);
+        wheelController.stopWheels();
+        wheelController.moveXY(-0.25,0);
+        sleep(4000);
         wheelController.stopWheels();
 
         //lifts arm and then drops it to grab foundation
@@ -29,16 +32,16 @@ public class TimedAutoFull extends LinearOpMode {
         foundationGrabber.setPosition(1);
 
         //pushes foundation into the corner
-        wheelController.moveXY(0,0.25);
-        sleep(1000);
+        wheelController.moveXY(0.25,0);
+        sleep(4000);
         wheelController.stopWheels();
 
         //releases foundation
         foundationGrabber.setPosition(0);
 
         //moves backward under the skybridge
-        wheelController.moveXY(0,0.25);
-        sleep(875);
+        wheelController.moveXY(0, 0.25);
+        sleep(3000);
         wheelController.stopWheels();
     }
 }
