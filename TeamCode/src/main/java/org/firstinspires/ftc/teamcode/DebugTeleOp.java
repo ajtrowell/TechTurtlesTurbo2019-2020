@@ -20,9 +20,7 @@ public class DebugTeleOp extends OpMode {
 
     @Override
     public void loop() {
-        wheelController.frontLeft.setPower(gamepad1.left_stick_y);
-        wheelController.frontRight.setPower(gamepad1.right_stick_y);
-        wheelController.backLeft.setPower(gamepad2.left_stick_y);
-        wheelController.backRight.setPower(gamepad2.right_stick_y);
+        wheelController.moveXY(0, gamepad1.left_stick_y);
+        telemetry.addData("overall encoder", (wheelController.leftEncoder() + wheelController.rightEncoder())/2);
     }
 }
