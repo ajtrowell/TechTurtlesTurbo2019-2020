@@ -28,7 +28,7 @@ public class TurtlesTeleOp extends OpMode {
 
     @Override
     public void loop() {
-        wheelController.moveXYTurn(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x);
+        wheelController.moveXYTurn(gamepad1.right_stick_x, gamepad1.left_stick_y, gamepad1.left_stick_x);
         armMotor.setPower(gamepad2.right_stick_y);
 
         if (gamepad2.a) claw.setPosition(0);
