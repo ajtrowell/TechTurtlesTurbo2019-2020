@@ -35,5 +35,8 @@ public class TurtlesTeleOp extends OpMode {
         if (gamepad2.b) claw.setPosition(1);
         if (gamepad2.x) foundationGrabber.setPosition(1);
         if (gamepad2.y) foundationGrabber.setPosition(0);
+
+        telemetry.addData("armEncoder", armMotor.getCurrentPosition());
+        telemetry.update();
     }
 }
