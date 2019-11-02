@@ -30,7 +30,7 @@ public class TurtlesTeleOp extends OpMode {
     @Override
     public void loop() {
         wheelController.moveXYTurn(wheelController.cubed(gamepad1.right_stick_x), wheelController.cubed(gamepad1.left_stick_y), -wheelController.cubed(gamepad1.left_stick_x));
-        armMotor.setPower(Range.clip(-wheelController.cubed(gamepad1.right_stick_y) + 0.05, -1, 1));
+        armMotor.setPower(Range.clip(-wheelController.cubed(gamepad2.right_stick_y) + 0.05, -1, 1));
 
         if (gamepad1.b) wheelController.runWithoutEncoder();
         if (gamepad1.a) wheelController.runUsingEncoder();
