@@ -21,10 +21,9 @@ public class EncoderAutoFull extends LinearOpMode {
         waitForStart();
 
         //moves forward to foundation
-        autoController.moveForwardCentimeters(152.4,0.25);
-        autoController.stopWheels();
-        autoController.moveXY(-0.25,0);
-        sleep(4000);
+        autoController.moveForwardCentimeters(152.4,0.5);
+        autoController.moveXY(0.5,0);
+        sleep(1000);
         autoController.stopWheels();
 
         //lifts arm and then drops it to grab foundation
@@ -32,15 +31,14 @@ public class EncoderAutoFull extends LinearOpMode {
         foundationGrabber.setPosition(1);
 
         //pushes foundation into the corner
-        autoController.moveXY(0.25,0);
-        sleep(4000);
+        autoController.moveXY(-0.5,0);
+        sleep(1000);
         autoController.stopWheels();
 
         //releases foundation
         foundationGrabber.setPosition(0);
 
         //moves backward under the skybridge
-        autoController.moveForwardCentimeters(91.4, 0.25);
-        autoController.stopWheels();
+        autoController.moveForwardCentimeters(91.4, 0.5);
     }
 }
