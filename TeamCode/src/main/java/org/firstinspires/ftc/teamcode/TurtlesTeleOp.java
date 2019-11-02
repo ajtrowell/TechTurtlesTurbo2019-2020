@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.lib.Configurator;
 import org.firstinspires.ftc.teamcode.lib.WheelController;
@@ -29,7 +30,7 @@ public class TurtlesTeleOp extends OpMode {
     @Override
     public void loop() {
         wheelController.moveXYTurn(gamepad1.right_stick_x, gamepad1.left_stick_y, gamepad1.left_stick_x);
-        armMotor.setPower(gamepad2.right_stick_y);
+        armMotor.setPower(Range.clip(-gamepad2.right_stick_y + 0.05, -1, 1));
 
         if (gamepad2.a) claw.setPosition(0);
         if (gamepad2.b) claw.setPosition(1);

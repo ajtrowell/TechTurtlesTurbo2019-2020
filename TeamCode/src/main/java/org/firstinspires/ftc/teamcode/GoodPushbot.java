@@ -1,14 +1,12 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-import org.firstinspires.ftc.teamcode.lib.util.DoubleCommand;
 import org.firstinspires.ftc.teamcode.lib.PreInitGUI;
+import org.firstinspires.ftc.teamcode.lib.util.StringCommand;
 
 //@TeleOp(name="Pushbot", group="default")
 
@@ -35,7 +33,7 @@ public class GoodPushbot extends OpMode {
         arm.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         left.setDirection(DcMotor.Direction.REVERSE);
 
-        gui = new PreInitGUI(new String[]{"armMin", "armMax"}, new DoubleCommand[]{() -> {return arm.getCurrentPosition();}}, telemetry, gamepad1);
+        gui = new PreInitGUI(new String[]{"armMin", "armMax"}, new StringCommand[]{() -> {return "Arm position: " + arm.getCurrentPosition();}}, this);
     }
 
     @Override
