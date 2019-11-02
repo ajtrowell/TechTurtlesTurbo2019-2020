@@ -129,4 +129,8 @@ public class WheelController {
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
     }
+
+    public double cubed(double input) {
+        return input * input * input;
+    }
 }
