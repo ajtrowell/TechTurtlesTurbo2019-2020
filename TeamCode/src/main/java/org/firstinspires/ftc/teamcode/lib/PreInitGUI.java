@@ -1,14 +1,15 @@
 package org.firstinspires.ftc.teamcode.lib;
 
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.lib.util.DoubleCommand;
+import org.firstinspires.ftc.teamcode.lib.util.StringCommand;
 
 public class PreInitGUI {
     String[] varNames;
     double[] setValues;
-    DoubleCommand[] dataDisplay;
+    StringCommand[] dataDisplay;
     Telemetry telemetry;
     Gamepad gamepad;
     int cursorPos;
@@ -17,12 +18,12 @@ public class PreInitGUI {
     boolean prevInc = false;
     boolean prevDec = false;
 
-    public PreInitGUI(String[] varNames, DoubleCommand[] dataDisplay, Telemetry telemetry, Gamepad gamepad) {
+    public PreInitGUI(String[] varNames, StringCommand[] dataDisplay, OpMode opMode) {
         this.varNames = varNames;
         this.dataDisplay = dataDisplay;
         setValues = new double[varNames.length];
-        this.telemetry = telemetry;
-        this.gamepad = gamepad;
+        this.telemetry = opMode.telemetry;
+        this.gamepad = opMode.gamepad1;
     }
 
     public void update() {
@@ -30,7 +31,7 @@ public class PreInitGUI {
 
         telemetry.addLine("=== Telemetry Value ===");
         for (int i = 0; i < dataDisplay.length; i++) {
-            telemetry.addData("   telemetry" + i, dataDisplay[i].execute());
+            telemetry.addLine(dataDisplay[i].execute());
         }
 
         telemetry.addLine("===   Change Data   ===");
