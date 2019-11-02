@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 public class AutoController extends WheelController {
     double cmToTick = 16.5;
 
-    AutoController(Configurator config) {
+    public AutoController(Configurator config) {
         super(config);
     }
 
