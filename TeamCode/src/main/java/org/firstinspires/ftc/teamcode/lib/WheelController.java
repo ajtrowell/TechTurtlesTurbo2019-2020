@@ -103,6 +103,20 @@ public class WheelController {
         moveXY(0,0);
     }
 
+    public void runUsingEncoder() {
+        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public void runWithoutEncoder() {
+        frontLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        frontRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        backRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
     public WheelController(Configurator config) {
         // When the wheel controller is instantiated, it gets the motors and sets them up
         frontLeft = config.getDcMotor("frontLeft");
@@ -110,14 +124,13 @@ public class WheelController {
         backLeft = config.getDcMotor("backLeft");
         backRight = config.getDcMotor("backRight");
 
-        frontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        frontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        backRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-
+        runUsingEncoder();
 
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+    }
+
+    public double cubed(double input) {
+        return input * input * input;
     }
 }
